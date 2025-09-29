@@ -1,0 +1,17 @@
+{
+  "name": "open-profiles-idor",
+  "version": "1.0.0",
+  "description": "OpenProfiles \u2014 small IDOR CTF challenge (ready for Render)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "cors": "^2.8.5"
+  }
+}

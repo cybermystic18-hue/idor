@@ -1,0 +1,21 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "email": "admin@openprofiles.local",
+    "bio": "Site administrator. Keep secrets safe.",
+    "flag": "ICTAK{idor_real_and_ripe}"
+  },
+  {
+    "id": 2,
+    "username": "alice",
+    "email": "alice@example.com",
+    "bio": "Hello, I'm Alice!"
+  },
+  {
+    "id": 3,
+    "username": "bob",
+    "email": "bob@example.com",
+    "bio": "Bob likes coffee."
+  }
+]
