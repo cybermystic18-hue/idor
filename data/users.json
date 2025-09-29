@@ -3,19 +3,25 @@
     "id": 1,
     "username": "admin",
     "email": "admin@openprofiles.local",
-    "bio": "Site administrator. Keep secrets safe.",
+    "bio": "Site administrator. Keep secrets safe. Contact via admin portal.",
     "flag": "ICTAK{idor_real_and_ripe}"
   },
   {
     "id": 2,
     "username": "alice",
     "email": "alice@example.com",
-    "bio": "Hello, I'm Alice!"
+    "bio": "Designer and amateur photographer. Loves cafés and books."
   },
   {
     "id": 3,
     "username": "bob",
     "email": "bob@example.com",
-    "bio": "Bob likes coffee."
+    "bio": "Backend dev. Drinks too much coffee."
+  },
+  {
+    "id": 4,
+    "username": "carla",
+    "email": "carla@example.com",
+    "bio": "Community manager. Shares events and meetups."
   }
 ]
