@@ -5,28 +5,59 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>OpenProfiles</title>
   <style>
-    body{font-family:system-ui,Segoe UI,Arial;margin:40px;background:#f7fafc;color:#0f172a;}
-    .card{background:#fff;border:1px solid #e6eef6;padding:20px;border-radius:12px;max-width:780px;box-shadow:0 6px 18px rgba(8,15,30,0.04)}
+    body{font-family:system-ui,Segoe UI,Arial;margin:36px;background:#f6fbff;color:#0b1220}
+    .card{background:#fff;border:1px solid #e7f0fb;padding:20px;border-radius:12px;max-width:900px;box-shadow:0 8px 24px rgba(9,20,40,0.04)}
+    .muted{color:#6b7280}
     pre{background:#0b1220;color:#dff7ff;padding:12px;border-radius:6px;overflow:auto}
-    a.code{background:#eef6ff;padding:2px 6px;border-radius:6px;color:#0369a1;text-decoration:none}
+    a.code{background:#eef6ff;padding:4px 8px;border-radius:6px;color:#0369a1;text-decoration:none}
   </style>
 </head>
 <body>
   <h1>OpenProfiles</h1>
   <div class="card">
-    <p>Welcome to <strong>OpenProfiles</strong>. This service exposes simple profile APIs used by our front-end. In this CTF challenge you're a normal user — can you find the admin's profile?</p>
+    <p>OpenProfiles is a small demo service for our user directory. For privacy, public listings do not expose internal identifiers — only usernames and short bios.</p>
 
-    <h3>Useful endpoints</h3>
+    <h3>Try these endpoints</h3>
     <ul>
-      <li><a class="code" href="/api/me">/api/me</a> — returns your profile link</li>
-      <li><a class="code" href="/api/profile/2">/api/profile/2</a> — example profile</li>
-      <li><a class="code" href="/api/users">/api/users</a> — public user list (IDs)</li>
+      <li><a class="code" href="/api/users">/api/users</a> — public user list (no IDs)</li>
+      <li><a class="code" href="/api/me">/api/me</a> — simulate getting your session token (returns a token used by the front-end)</li>
+      <li><span class="muted">To view a profile the front-end calls <code>/api/profile?token=...</code></span></li>
     </ul>
 
-    <h3>Hint</h3>
-    <p>Profile IDs are numeric and predictable. Try modifying the <code>/api/profile/&lt;id&gt;</code> path.</p>
+    <h3>Developer notes</h3>
+    <p class="muted">This demo uses tokens signed with a server secret. In production the secret must never be exposed client-side. (Some builds accidentally include <code>web/config.js</code> which contains build-time constants.)</p>
+
+    <h3>Want to explore?</h3>
+    <p>Open the network tab and inspect the frontend assets. You may find helpful information in the JS files loaded by this page.</p>
 
     <h3>Good luck!</h3>
   </div>
+
+  <!-- intentionally loading a config file that leaks a client constant (realistic accident) -->
+  <script src="/config.js"></script>
+
+  <script>
+    // quick UI helpers to demonstrate interactions
+    async function showJSON(url){ 
+      try {
+        const r = await fetch(url);
+        const j = await r.json();
+        const p = document.createElement('pre');
+        p.textContent = JSON.stringify(j, null, 2);
+        document.body.appendChild(p);
+      } catch(e){
+        alert('Failed: ' + e);
+      }
+    }
+
+    // add quick buttons for convenience (not revealing anything sensitive)
+    const panel = document.createElement('div');
+    panel.style.marginTop = '18px';
+    panel.innerHTML = '<button id="btn-users">Show /api/users</button> <button id="btn-me">Get /api/me (token)</button>';
+    document.querySelector('.card').appendChild(panel);
+
+    document.getElementById('btn-users').addEventListener('click', ()=> showJSON('/api/users'));
+    document.getElementById('btn-me').addEventListener('click', ()=> showJSON('/api/me'));
+  </script>
 </body>
 </html>
