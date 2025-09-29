@@ -1,7 +1,7 @@
 {
   "name": "open-profiles-idor",
-  "version": "1.0.0",
-  "description": "OpenProfiles \u2014 small IDOR CTF challenge (ready for Render)",
+  "version": "1.1.0",
+  "description": "OpenProfiles",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
